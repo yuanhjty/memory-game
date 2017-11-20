@@ -1,10 +1,14 @@
 html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
     box-sizing: inherit;
 }
 
@@ -38,22 +42,22 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 560px;
+    min-height: 560px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
+    padding: 16px;
+    border-radius: 8px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 3em;
+    margin: auto;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    height: 115px;
+    width: 115px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -66,7 +70,6 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
 }
@@ -81,29 +84,89 @@ h1 {
     font-size: 33px;
 }
 
+.deck .card.not-match {
+    background: red;
+}
+
 /*
  * Styles for the Score Panel
  */
 
 .score-panel {
     text-align: left;
-    width: 345px;
     margin-bottom: 10px;
 }
 
-.score-panel .stars {
-    margin: 0;
+.stars {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    color: red;
 }
 
-.score-panel .stars li {
+.lost-stars {
+    color: lightgray;
+}
+
+.stars li {
     list-style: none;
     display: inline-block;
 }
 
+.score-panel .moves {
+    margin-left: 2em;
+}
+
+.score-panel .times {
+    margin-left: 2em;
+}
+
 .score-panel .restart {
+    display: inline-block;
     float: right;
     cursor: pointer;
+    margin-left: 2em;
+}
+
+/*
+ * Styles for Over Message
+ */
+.over-message {
+    position: absolute;
+    top: -1000px;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: larger;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 32px 128px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 10;
+}
+
+.hide-over-message {
+    top: -1000px;
+}
+
+.show-over-message {
+    top: auto;
+}
+
+.over-message .lost-stars {
+    display: none;
+}
+
+.try-again {
+    background-color: rgba(2, 204, 186, 0.85);
+    cursor: pointer;
+    padding: 8px;
+    width: 160px;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+footer {
+    margin: 20px auto;
 }
