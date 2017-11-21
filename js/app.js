@@ -1,4 +1,5 @@
 // Generic Functions
+// 引用自  JavaScript DOM编程艺术(第2版) Jeremy Keith、effrey Sambells著
 function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof oldonload !== 'function') {
