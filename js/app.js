@@ -1,7 +1,12 @@
 // Generic Functions
-// 引用自  JavaScript DOM编程艺术(第2版) Jeremy Keith、effrey Sambells著
+
+// 引用自 JavaScript DOM编程艺术(第2版) Jeremy Keith、effrey Sambells著
+/**
+ * @description  扩充 window.onload 事件的回调函数
+ * @param {function} func - 要增加的函数
+ */
 function addLoadEvent(func) {
-    var oldonload = window.onload;
+    let oldonload = window.onload;
     if (typeof oldonload !== 'function') {
         window.onload = func;
     } else {
@@ -12,19 +17,27 @@ function addLoadEvent(func) {
     }
 }
 
+/**
+ * @param {object} element
+ * @param {string} className
+ */
 function addClass(element, className) {
-    var classValue = element.getAttribute('class');
+    let classValue = element.getAttribute('class');
     if (classValue.indexOf(className) === -1) {
         classValue = classValue ? classValue + ' ' + className : className;
         element.setAttribute('class', classValue);
     }
 }
 
+/**
+ * @param {object} element
+ * @param {string} className
+ */
 function removeClass(element, className) {
-    var classValue = element.getAttribute('class');
-    var index = classValue.indexOf(className);
+    let classValue = element.getAttribute('class');
+    let index = classValue.indexOf(className);
     if (index !== -1) {
-        var deleteCount = classValue[index + className.length] === ' ' ?
+        let deleteCount = classValue[index + className.length] === ' ' ?
             className.length + 1 : className.length;
         classValue = classValue.slice(0, index) + classValue.slice(index + deleteCount);
         element.setAttribute('class', classValue.trim());
@@ -32,8 +45,11 @@ function removeClass(element, className) {
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
+/**
+ * @param {object} array - 数组对象
+ */
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -45,8 +61,8 @@ function shuffle(array) {
 }
 
 // Global Objects of Dom Elements to operate
-var cards = function () {
-    var cardsDeck = document.getElementsByClassName('deck')[0];
+let cards = function () {
+    let cardsDeck = document.getElementsByClassName('deck')[0];
     return {
         NAME_PREF: 'fa fa-',
         contents: [
@@ -61,9 +77,9 @@ var cards = function () {
     };
 }();
 
-var scorePanel = function () {
-    var scorePanel = document.getElementsByClassName('score-panel')[0];
-    var starsDeck = scorePanel.getElementsByClassName('stars')[0];
+let scorePanel = function () {
+    let scorePanel = document.getElementsByClassName('score-panel')[0];
+    let starsDeck = scorePanel.getElementsByClassName('stars')[0];
     return {
         stars: starsDeck.getElementsByTagName('i'),
         moves: scorePanel.getElementsByClassName('moves')[0],
@@ -75,9 +91,9 @@ var scorePanel = function () {
     };
 }();
 
-var finalScore = function () {
-    var finalScore = document.getElementsByClassName('final-score')[0];
-    var starsDeck = finalScore.getElementsByClassName('stars')[0];
+let finalScore = function () {
+    let finalScore = document.getElementsByClassName('final-score')[0];
+    let starsDeck = finalScore.getElementsByClassName('stars')[0];
     return {
         panel: finalScore,
         stars: starsDeck.getElementsByTagName('i'),
@@ -88,11 +104,18 @@ var finalScore = function () {
 }();
 
 // Game Logical Functions
+/**
+ * @param {object} element
+ * @param {string} cardName
+ */
 function setCard(element, cardName) {
-    var card = element.getElementsByTagName('i')[0];
+    let card = element.getElementsByTagName('i')[0];
     card.setAttribute('class', cardName);
 }
 
+/**
+ * @description 组织游戏逻辑
+ */
 function openCard() {
     // 在每一局游戏中，当打开第一张卡片时，启动计时器
     if (scorePanel.timer === null) {
@@ -131,12 +154,16 @@ function openCard() {
     }
 }
 
+/**
+ * @param {object} firstCard
+ * @param {object} secondCard
+ */
 function dealWithCardPair(firstCard, secondCard) {
     removeClass(firstCard, 'animated flipInY');
     removeClass(secondCard, 'animated flipInY');
 
-    var firstCardContent = firstCard.getElementsByTagName('i')[0].getAttribute('class');
-    var secondCardContent = secondCard.getElementsByTagName('i')[0].getAttribute('class');
+    let firstCardContent = firstCard.getElementsByTagName('i')[0].getAttribute('class');
+    let secondCardContent = secondCard.getElementsByTagName('i')[0].getAttribute('class');
 
     if (firstCardContent === secondCardContent) {
         addClass(firstCard, 'match animated bounce');
@@ -155,6 +182,9 @@ function dealWithCardPair(firstCard, secondCard) {
     }
 }
 
+/**
+ * @description 展示游戏结果
+ */
 function gameOver() {
     // Stop timing.
     if (scorePanel.timer !== null) {
@@ -179,16 +209,22 @@ function gameOver() {
 }
 
 // Initialization Functions
+/**
+ * @description 为相关DOM元素绑定回调函数
+ */
 function setEvents() {
     scorePanel.restart.onclick = init;
     finalScore.playAgain.onclick = init;
-    for (var i = 0; i < cards.elements.length; i++) {
+    for (let i = 0; i < cards.elements.length; i++) {
         cards.elements[i].onclick = openCard;
     }
 }
 
+/**
+ * @description 初始化记分板DOM元素
+ */
 function initScorePanel() {
-    for (var i = 0; i < scorePanel.stars.length; i++) {
+    for (let i = 0; i < scorePanel.stars.length; i++) {
         scorePanel.stars[i].setAttribute('class', 'fa fa-star');
     }
 
@@ -203,10 +239,13 @@ function initScorePanel() {
     }
 }
 
+/**
+ * @description 洗牌并初始化卡片DOM元素
+ */
 function initCards() {
     shuffle(cards.contents);
-    var cardElement, cardName;
-    for (var i = 0; i < cards.elements.length; i++) {
+    let cardElement, cardName;
+    for (let i = 0; i < cards.elements.length; i++) {
         cardElement = cards.elements[i];
         cardName = cards.NAME_PREF + cards.contents[i];
         setCard(cardElement, cardName);
@@ -216,14 +255,20 @@ function initCards() {
     cards.matchPairsNumber = 0;
 }
 
+/**
+ * @description 初始化得分板DOM元素
+ */
 function initFinalScore() {
     finalScore.panel.setAttribute('class', 'final-score');
     removeClass(finalScore.panel, 'show');
-    for (var i = 0; i < finalScore.stars.length; i++) {
+    for (let i = 0; i < finalScore.stars.length; i++) {
         finalScore.stars[i].setAttribute('class', 'fa fa-star fa-4x');
     }
 }
 
+/**
+ * @description 初始化全部DOM元素
+ */
 function init() {
     initScorePanel();
     initCards();
