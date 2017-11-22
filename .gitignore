@@ -2,4 +2,5 @@
 .htmlhintrc
 .stylelintrc
 .eslintrc.json
-demo-img
+.idea
+node_modules
