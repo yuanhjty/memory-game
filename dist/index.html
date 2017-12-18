@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="description" content="memory game">
+        <title>Memory Game</title>
+        <link rel="Shortcut Icon" href="img/page-icon.png" type="image/png">
+        <link rel="stylesheet prefetch" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+
+        <script type="text/javascript" src="js/external.bundle.js"></script>
+        <script type="text/javascript" src="js/assets.bundle.js"></script>
+
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Memory Game</h1>
+            </header>
+
+            <section class="score-panel">
+                <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                </ul>
+
+                <span class="moves"><span class="moves-value">0</span> Moves</span>
+
+                <span class="times"><span class="times-value">0</span> Seconds</span>
+            </section>
+
+            <section class="function-panel">
+                <div class="restart"><span>Restart </span><i class="fa fa-repeat"></i></div>
+            </section>
+
+            <section class="main-panel">
+                <ul class="deck">
+                    <li class="card">
+                        <i class="fa fa-diamond"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-paper-plane-o"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-anchor"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-bolt"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-cube"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-anchor"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-leaf"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-bicycle"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-diamond"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-bomb"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-leaf"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-bomb"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-bolt"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-bicycle"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-paper-plane-o"></i>
+                    </li>
+                    <li class="card">
+                        <i class="fa fa-cube"></i>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="over-panel">
+                <ul class="stars">
+                    <li><i class="fa fa-star fa-3x"></i></li>
+                    <li><i class="fa fa-star fa-3x"></i></li>
+                    <li><i class="fa fa-star fa-3x"></i></li>
+                </ul>
+
+                <h1>Congratulations!</h1>
+
+                <p>
+                    With <span class="final-moves-value">0</span> moves and <span class="final-times-value">0</span>
+                    seconds.
+                </p>
+
+                <div class="play-again">
+                    Play Again
+                </div>
+            </section>
+
+            <footer>
+                <nav>
+                    <a class="git-repo" href="https://github.com/yuanhjty/memoryGame">GitHub Repo
+                        <img class="git-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfeDAURHhm7AJSUAAABD0lEQVQoz2XQzysDcBzG8ddmxZLLbI2D8qOdduHksIPQXPwHKynJf6GlHDnxD4gl8R8ocnBjOc1BSwoHliLKHHwdtmnseW6f91PP5/OhoZg5JXe+fLlTMiemTSkbakKbazalWjjp4A9s+UCSLl2KVlwpSej24h23dvSaFXHCtCfBFsbkZGTkjGFb8GQmZlEKAVVVcAO+kbJAVfAm77/yXgVVPgUV6Y5AWkVQjzbvjXQEGpNo1DPShjoCQ9KoRV0iYVn8D45bksAFBa+OXds3r7/5uHl76oIPBfocOrXi0YMcmPp9+6E+yCpbM2lKDxh1LwjKsq3GCUd2rTYrRtz7dmy8falB684Ng2FnigYa4AdeaVysj4lctwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNy0xMS0xMlQxMTowMTo1MiswODowMBizUN4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTQtMTItMDVUMTc6MzA6MjUrMDg6MDCQOBXIAAAATXRFWHRzb2Z0d2FyZQBJbWFnZU1hZ2ljayA3LjAuMS02IFExNiB4ODZfNjQgMjAxNi0wOS0xNyBodHRwOi8vd3d3LmltYWdlbWFnaWNrLm9yZ93ZpU4AAAAYdEVYdFRodW1iOjpEb2N1bWVudDo6UGFnZXMAMaf/uy8AAAAXdEVYdFRodW1iOjpJbWFnZTo6SGVpZ2h0ADYzIoQ8JwAAABZ0RVh0VGh1bWI6OkltYWdlOjpXaWR0aAA2NERPaQkAAAAZdEVYdFRodW1iOjpNaW1ldHlwZQBpbWFnZS9wbmc/slZOAAAAF3RFWHRUaHVtYjo6TVRpbWUAMTQxNzc3MTgyNX4iJY0AAAASdEVYdFRodW1iOjpTaXplADEuNTlLQuc3kFoAAABfdEVYdFRodW1iOjpVUkkAZmlsZTovLy9ob21lL3d3d3Jvb3Qvc2l0ZS93d3cuZWFzeWljb24ubmV0L2Nkbi1pbWcuZWFzeWljb24uY24vc3JjLzExODExLzExODExODUucG5nsE5jegAAAABJRU5ErkJggg==">
+                    </a>
+                </nav>
+            </footer>
+        </div>
+        <script type="text/javascript" src="js/main.bundle.js"></script>
+    </body>
+</html>

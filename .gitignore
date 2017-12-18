@@ -4,3 +4,4 @@
 .eslintrc.json
 .idea
 node_modules
+testSyntax
